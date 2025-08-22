@@ -67,7 +67,7 @@ useEffect(() => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    await axios.post("https://bugbounty-vj5n.onrender.com/reports", {
+    await axios.post("http://localhost:8080/reports", {
       ...formData,
       programId: id, // ensure programId is linked
       reportedBy: user,
