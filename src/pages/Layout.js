@@ -1,14 +1,20 @@
 // src/pages/Layout.js
 import { Outlet, Link } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export default function Layout() {
-  const { logoutUser } = useAppContext();
+  const { logoutUser,getTotalPoints,totalPoints } = useAppContext();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const user = localStorage.getItem("user"); 
+
+  useEffect(()=>{
+    if(totalPoints===-1){
+      getTotalPoints();
+    }
+  },[getTotalPoints,totalPoints])
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
@@ -20,6 +26,8 @@ export default function Layout() {
           <Link to="/" className="hover:text-red-500 transition-colors">
             Home
           </Link>
+
+          <p className="text-green-500">{totalPoints}$</p>
 
           {/* User Dropdown */}
           <div className="relative">

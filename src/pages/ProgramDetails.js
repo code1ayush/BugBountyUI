@@ -24,6 +24,13 @@ const localStorageToken = localStorage.getItem("token");
 
   const isMyProgram = myPrograms.some((program) => program.id === id);
 
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
 
 useEffect(() => {
   const loadProgram = async () => {
@@ -95,6 +102,10 @@ useEffect(() => {
   };
 
 
+  const handleCreateReport = ()=>{
+    setShowForm(!showForm);
+    scrollToBottom();
+  }
 
 
   return (
@@ -159,7 +170,7 @@ useEffect(() => {
           {program.description}
         </p>
         {!isMyProgram && <button
-            onClick={() => setShowForm(!showForm)}
+                      onClick={handleCreateReport}
             className="flex items-center mx-auto m-5 gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-xl transition shadow-md hover:shadow-red-500/30"
           >
             <FilePlus size={18} /> Create Report

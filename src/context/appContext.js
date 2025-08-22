@@ -8,6 +8,9 @@ const AppProvider = ({children}) => {
   const[allPrograms,setAllPrograms] = useState([]);
   const[myPrograms,setMyprograms] = useState([]);
   const[myReports,setMyReports] = useState([])
+  const[reward,setReward] = useState([]);
+  const[totalPoints,setTotalPoints] = useState(-1);
+  const[leaderBoard,setLeaderBoard] = useState([]);
 
   const localStorageToken = localStorage.getItem("token");
 
@@ -128,6 +131,71 @@ const getProgramById = async(id)=>{
   }
 }
 
+const updateReportById =  async(id,updatedReport) =>{
+  try{
+    await axios.put(`http://localhost:8080/reports/${id}`,updatedReport,{
+      headers:{
+        Authorization: `Bearer ${localStorageToken}`,
+      }
+    })
+  }catch(error){
+    throw error;
+  }
+}
+
+const postReward = async(reward,userName) =>{
+  try{
+    await axios.post(`http://localhost:8080/rewards/${userName}`,reward,{
+      headers:{
+        Authorization: `Bearer ${localStorageToken}`,
+      }
+    })
+  }catch(error){
+    throw error;
+  }
+}
+
+const getReward = async()=>{
+  try{
+    const response = await axios.get("http://localhost:8080/rewards",{
+      headers:{
+        Authorization: `Bearer ${localStorageToken}`,
+      }
+    })
+    setReward(response.data);
+  }catch(error){
+    throw error;
+  }
+}
+
+const getTotalPoints = async() =>{
+  try{
+    const response = await axios.get("http://localhost:8080/rewards/totalPoints",{
+    headers:{
+      Authorization: `Bearer ${localStorageToken}`,
+    }
+  })
+  setTotalPoints(response.data);
+  }catch(error){
+    throw error;
+  }
+}
+
+const getLeaderBoard = async()=>{
+  try{
+    const response = await axios.get("http://localhost:8080/leaderBoard",{
+      headers:{
+        Authorization: `Bearer ${localStorageToken}`,
+      }
+    })
+    console.log(response.data);
+    
+    setLeaderBoard(response.data);
+  }catch(error){
+    throw error;
+  }
+}
+
 
   return(
     <AppContext.Provider
@@ -143,7 +211,15 @@ const getProgramById = async(id)=>{
       deleteProgram,
       myReports,
       getMyReports,
-      getProgramById
+      getProgramById,
+      updateReportById,
+      reward,
+      getReward,
+      postReward,
+      totalPoints,
+      getTotalPoints,
+      getLeaderBoard,
+      leaderBoard
     }}
     >{children}</AppContext.Provider>
   )

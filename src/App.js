@@ -10,6 +10,8 @@ import ProgramDetails from "./pages/ProgramDetails";
 import MyPrograms from "./pages/MyPrograms";
 import MyProgramsDetails from "./pages/MyProgramDetails"
 import MyReports from "./pages/MyReports";
+import Rewards from "./pages/Rewards"
+import LeaderBoard from "./pages/LeaderBoard"
 
 const App = () => {
 
@@ -32,6 +34,8 @@ const App = () => {
           <Route path="/myprograms" element = {<MyPrograms/>}/>
           <Route path="/myprograms/:id" element = {<MyProgramsDetails/>}/>
           <Route path="/myreports" element={<MyReports/>}/>
+          <Route path="/rewards" element ={<Rewards/>}/>
+          <Route path="/leaderboard" element={<LeaderBoard/>}/>
         </Route>
         <Route path="*" element={<Nopage />} />
       </Routes>

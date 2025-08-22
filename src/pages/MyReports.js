@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { useAppContext } from '../context/appContext'
 import { useNavigate } from 'react-router-dom';
+import StatusStepper from '../components/StatusStepper';
 
 const MyReports = () => {
     const navigate = useNavigate();
@@ -54,7 +55,7 @@ const MyReports = () => {
       {/* Modal */}
       {selectedReport && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="bg-gray-900 rounded-xl p-6 w-full max-w-lg shadow-lg border border-gray-700 relative">
+          <div className="bg-gray-900 rounded-xl p-6 w-full max-w-xl shadow-lg border border-gray-700 relative">
             {/* Close button */}
             <button
         className="absolute top-3 right-3 text-gray-400 hover:text-white"
@@ -65,10 +66,15 @@ const MyReports = () => {
         ✕
       </button>
 
-            <button onClick={handleprogram}>
-  <span className="font-medium text-white">Program</span>
-</button>
-              
+            <div className='flex justify-center text-2xl '>
+              <button onClick={handleprogram}>
+          <span className="font-medium text-yellow-500 ">Program</span>
+          </button>
+            </div>
+            < br></br>
+               <p>  
+                    <StatusStepper status= {selectedReport.status}/>
+              </p>
 
             <h2 className="text-2xl font-bold text-red-400 mb-4">
               {selectedReport.title}
@@ -86,10 +92,7 @@ const MyReports = () => {
                   ? new Date(selectedReport.createdAt).toLocaleDateString()
                   : "N/A"}
               </p>
-              <p>
-                <span className="font-medium text-yellow-400">Status:</span>{" "}
-                {selectedReport.status || "Pending"}
-              </p>
+             
             </div>
           </div>
         </div>

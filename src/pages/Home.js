@@ -3,7 +3,7 @@ import React from 'react';
 import { useAppContext } from '../context/appContext'
 import { useNavigate } from 'react-router-dom';
 export default function Home() {
-  const {getAllPrograms, getMyPrograms,getMyReports} = useAppContext();
+  const {getAllPrograms, getMyPrograms,getMyReports,getReward,getLeaderBoard} = useAppContext();
   const navigate = useNavigate();
 
   const handleClick = async () => {
@@ -19,6 +19,16 @@ export default function Home() {
   const handleGetMyReport = async ()=>{
     await getMyReports();
     navigate("/myreports")
+  }
+
+  const handleRewards = async()=>{
+    await getReward();
+    navigate("/rewards")
+  }
+
+  const handleLeaderBoard = async()=>{
+    await getLeaderBoard();
+    navigate("/leaderboard")
   }
   
   return (
@@ -37,12 +47,12 @@ export default function Home() {
 
       {/* Call to Action */}
       <div className="flex flex-col items-center justify-center gap-4 mb-16 sm:flex-row">
-        <a
-          href="/random"
+        <button
+          onClick={handleLeaderBoard}
           className="w-full px-8 py-4 text-lg text-center font-bold text-white transition-transform transform bg-red-500 rounded-full shadow-lg sm:w-auto hover:bg-red-600 hover:scale-105"
         >
-          Start Hacking
-        </a>
+          Check leaderboard
+        </button>
         <button onClick={handleClick}
           className="w-full px-8 py-4 text-lg font-bold text-gray-200 transition-colors border-2 border-gray-600 rounded-full sm:w-auto hover:border-red-500 hover:text-red-500"
         >
@@ -79,7 +89,8 @@ export default function Home() {
         </button>
         {/* Feature Card 3 */}
         
-          <div className="p-8 transition-colors duration-300 border border-gray-700 shadow-lg bg-gray-900 rounded-3xl hover:border-green-500">
+          <button onClick={handleRewards}>
+            <div className="p-8 transition-colors duration-300 border border-gray-700 shadow-lg bg-gray-900 rounded-3xl hover:border-green-500">
           <h3 className="flex items-center mb-3 text-xl font-bold text-green-500">
             <span className="mr-2 text-3xl">💰</span> Earn Rewards
           </h3>
@@ -88,6 +99,7 @@ export default function Home() {
             Your expertise is valuable and we ensure prompt payouts.
           </p>
         </div>
+          </button>
         
       </div>
 

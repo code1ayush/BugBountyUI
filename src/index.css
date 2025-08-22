@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this to your global CSS file */
+
+/* Hide spinners in Chrome, Safari, Edge, and Opera */
+.no-arrows::-webkit-outer-spin-button,
+.no-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spinners in Firefox */
+.no-arrows {
+  -moz-appearance: textfield;
+}
