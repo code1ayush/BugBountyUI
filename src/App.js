@@ -5,13 +5,18 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import DashBoard from "./pages/DashBoard";
 import Nopage from "./pages/Nopage";
-import Program from "./pages/Program";
-import ProgramDetails from "./pages/ProgramDetails";
-import MyPrograms from "./pages/MyPrograms";
-import MyProgramsDetails from "./pages/MyProgramDetails"
-import MyReports from "./pages/MyReports";
-import Rewards from "./pages/Rewards"
-import LeaderBoard from "./pages/LeaderBoard"
+import Program from "./pages/ProgramPage";
+import ProgramDetails from "./pages/ProgramDetailsPage";
+import MyPrograms from "./pages/MyProgramsPage";
+import MyProgramsDetails from "./pages/MyProgramDetailsPage"
+import MyReports from "./pages/MyReportsPage";
+import Rewards from "./pages/RewardsPage"
+import LeaderBoard from "./pages/LeaderBoardPage"
+import ProgramForm from "./pages/ProgramFormPage";
+import ReportFormPage from "./pages/ReportFormPage";
+import ReportDetailPage from "./pages/ReportDetailPage";
+import SubmittedReportPage from "./pages/SubmittedReportPage";
+import SubmittedReportsDetailPage from "./pages/SubmittedReportsDetailPage";
 
 const App = () => {
 
@@ -36,6 +41,11 @@ const App = () => {
           <Route path="/myreports" element={<MyReports/>}/>
           <Route path="/rewards" element ={<Rewards/>}/>
           <Route path="/leaderboard" element={<LeaderBoard/>}/>
+          <Route path="/programform" element={<ProgramForm/>}/>
+          <Route path="/reportform/:id" element={<ReportFormPage/>}/>
+          <Route path="myreports/:id" element={<ReportDetailPage/>}/>
+          <Route path="/submittedReports" element={<SubmittedReportPage/>}/>
+          <Route path="/submittedReports/:id" element={<SubmittedReportsDetailPage/>}/>
         </Route>
         <Route path="*" element={<Nopage />} />
       </Routes>

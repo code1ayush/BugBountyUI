@@ -5,8 +5,9 @@ const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
 
-  const[allPrograms,setAllPrograms] = useState([]);
-  const[myPrograms,setMyprograms] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const[allPrograms,setAllPrograms] = useState(null);
+  const[myPrograms,setMyprograms] = useState(null);
   const[myReports,setMyReports] = useState([])
   const[reward,setReward] = useState([]);
   const[totalPoints,setTotalPoints] = useState(-1);
@@ -54,6 +55,7 @@ const AppProvider = ({children}) => {
 
   const getAllPrograms = async()=>{
     try{
+      setLoading(true);
     const response = await axios.get("http://localhost:8080/programs/allPrograms", {
       headers: {
         Authorization: `Bearer ${localStorageToken}`, 
@@ -63,12 +65,15 @@ const AppProvider = ({children}) => {
   } catch (error) {
     console.error("Error fetching programs:", error);
     throw error;
+  }finally {
+    setLoading(false);
   }
 
 }
 
 const postPrograms = async(programToPost) =>{
   try{
+     setLoading(true)
      await axios.post("http://localhost:8080/programs",programToPost,{
     headers:{
       Authorization : `Bearer ${localStorageToken}`, 
@@ -76,11 +81,29 @@ const postPrograms = async(programToPost) =>{
   })
   }catch(Error){
     throw Error;
+  }finally {
+    setLoading(false);
+  }
+}
+
+const postReport = async(report) =>{
+  try{
+    setLoading(true);
+    await axios.post("http://localhost:8080/reports",report,{
+      headers:{
+        Authorization: `Bearer ${localStorageToken}`, 
+      }
+    })
+  }catch(error){
+    throw error;
+  }finally{
+    setLoading(false);
   }
 }
 
 const getMyPrograms = async() =>{
   try{
+    setLoading(true)
     const response = await axios.get("http://localhost:8080/programs",{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
@@ -90,6 +113,8 @@ const getMyPrograms = async() =>{
     
   }catch(e){
     throw e;
+  }finally {
+    setLoading(false);
   }
 }
 
@@ -219,7 +244,9 @@ const getLeaderBoard = async()=>{
       totalPoints,
       getTotalPoints,
       getLeaderBoard,
-      leaderBoard
+      leaderBoard,
+      loading,
+      postReport
     }}
     >{children}</AppContext.Provider>
   )

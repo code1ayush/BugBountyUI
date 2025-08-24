@@ -3,11 +3,10 @@ import React from 'react';
 import { useAppContext } from '../context/appContext'
 import { useNavigate } from 'react-router-dom';
 export default function Home() {
-  const {getAllPrograms, getMyPrograms,getMyReports,getReward,getLeaderBoard} = useAppContext();
+  const {getMyPrograms,getMyReports,getReward,getLeaderBoard} = useAppContext();
   const navigate = useNavigate();
 
-  const handleClick = async () => {
-    await getAllPrograms(); // fetch first
+  const handleClick = () => {
     navigate("/programs"); // then go to /programs
   };
 
@@ -32,7 +31,7 @@ export default function Home() {
   }
   
   return (
-    <div className="flex flex-col items-center justify-center py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white px-4">
+    <div className="flex flex-col mt-16 items-center justify-center py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white px-4">
       
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto text-center">

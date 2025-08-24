@@ -19,13 +19,16 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
       {/* Navbar */}
-      <header className="flex justify-between items-center p-4 bg-gray-900 shadow-md relative">
-        <h1 className="text-xl font-bold text-red-500">Bug Bounty App</h1>
+      <header className="flex justify-between items-center p-4 bg-gray-900 shadow-md fixed top-0 w-full z-50">
+        <h1 className="text-xl font-bold text-red-500">Bug Bounty</h1>
         
         <nav className="flex items-center space-x-6 font-semibold">
-          <Link to="/" className="hover:text-red-500 transition-colors">
-            Home
-          </Link>
+          <Link
+              to="/"
+              className="hidden md:block hover:text-red-500 transition-colors"
+            >
+              Home
+            </Link>
 
           <p className="text-green-500">{totalPoints}$</p>
 
@@ -53,7 +56,7 @@ export default function Layout() {
       </header>
 
       {/* Main content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-2 md:p-6 ">
         <Outlet />
       </main>
     </div>

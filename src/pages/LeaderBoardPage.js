@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppContext } from '../context/appContext'
-import LeaderBoardComp from '../components/LeaderBoardComp';
+import LeaderBoardComp from '../components/LeaderBoard';
 
 const LeaderBoard = () => {
 
