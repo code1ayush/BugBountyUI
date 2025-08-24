@@ -32,7 +32,7 @@ const AppProvider = ({children}) => {
 
   const registerUser = async (currentUser) =>{
     try{
-      const response = await axios.post("http://localhost:8080/public/signup",currentUser);
+      const response = await axios.post("https://bugbounty-vj5n.onrender.com/public/signup",currentUser);
       addTokenToLocalStorage(response.data);
       localStorage.setItem("user", currentUser.userName);
       window.location.href = "/";
@@ -43,7 +43,7 @@ const AppProvider = ({children}) => {
 
   const loginUser = async(currentUser) => {
     try{
-      const response = await axios.post("http://localhost:8080/public/login",currentUser);
+      const response = await axios.post("https://bugbounty-vj5n.onrender.com/public/login",currentUser);
       addTokenToLocalStorage(response.data);
       console.log("this is current user" + currentUser);
       localStorage.setItem("user", currentUser.userName);
@@ -56,7 +56,7 @@ const AppProvider = ({children}) => {
   const getAllPrograms = async()=>{
     try{
       setLoading(true);
-    const response = await axios.get("http://localhost:8080/programs/allPrograms", {
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/programs/allPrograms", {
       headers: {
         Authorization: `Bearer ${localStorageToken}`, 
       },
@@ -74,7 +74,7 @@ const AppProvider = ({children}) => {
 const postPrograms = async(programToPost) =>{
   try{
      setLoading(true)
-     await axios.post("http://localhost:8080/programs",programToPost,{
+     await axios.post("https://bugbounty-vj5n.onrender.com/programs",programToPost,{
     headers:{
       Authorization : `Bearer ${localStorageToken}`, 
     }
@@ -89,7 +89,7 @@ const postPrograms = async(programToPost) =>{
 const postReport = async(report) =>{
   try{
     setLoading(true);
-    await axios.post("http://localhost:8080/reports",report,{
+    await axios.post("https://bugbounty-vj5n.onrender.com/reports",report,{
       headers:{
         Authorization: `Bearer ${localStorageToken}`, 
       }
@@ -104,7 +104,7 @@ const postReport = async(report) =>{
 const getMyPrograms = async() =>{
   try{
     setLoading(true)
-    const response = await axios.get("http://localhost:8080/programs",{
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/programs",{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -120,7 +120,7 @@ const getMyPrograms = async() =>{
 
 const deleteProgram = async(id)=>{
   try{
-     await axios.delete(`http://localhost:8080/programs/id/${id}`,{
+     await axios.delete(`https://bugbounty-vj5n.onrender.com/programs/id/${id}`,{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -132,7 +132,7 @@ const deleteProgram = async(id)=>{
 
 const getMyReports = async()=>{
   try{
-    const response = await axios.get("http://localhost:8080/reports/myreports",{
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/reports/myreports",{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -145,7 +145,7 @@ const getMyReports = async()=>{
 
 const getProgramById = async(id)=>{
   try{
-    const response = await axios.get(`http://localhost:8080/programs/id/${id}`,{
+    const response = await axios.get(`https://bugbounty-vj5n.onrender.com/programs/id/${id}`,{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -158,7 +158,7 @@ const getProgramById = async(id)=>{
 
 const updateReportById =  async(id,updatedReport) =>{
   try{
-    await axios.put(`http://localhost:8080/reports/${id}`,updatedReport,{
+    await axios.put(`https://bugbounty-vj5n.onrender.com/reports/${id}`,updatedReport,{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -170,7 +170,7 @@ const updateReportById =  async(id,updatedReport) =>{
 
 const postReward = async(reward,userName) =>{
   try{
-    await axios.post(`http://localhost:8080/rewards/${userName}`,reward,{
+    await axios.post(`https://bugbounty-vj5n.onrender.com/rewards/${userName}`,reward,{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -182,7 +182,7 @@ const postReward = async(reward,userName) =>{
 
 const getReward = async()=>{
   try{
-    const response = await axios.get("http://localhost:8080/rewards",{
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/rewards",{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
@@ -195,7 +195,7 @@ const getReward = async()=>{
 
 const getTotalPoints = async() =>{
   try{
-    const response = await axios.get("http://localhost:8080/rewards/totalPoints",{
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/rewards/totalPoints",{
     headers:{
       Authorization: `Bearer ${localStorageToken}`,
     }
@@ -208,7 +208,7 @@ const getTotalPoints = async() =>{
 
 const getLeaderBoard = async()=>{
   try{
-    const response = await axios.get("http://localhost:8080/leaderBoard",{
+    const response = await axios.get("https://bugbounty-vj5n.onrender.com/leaderBoard",{
       headers:{
         Authorization: `Bearer ${localStorageToken}`,
       }
